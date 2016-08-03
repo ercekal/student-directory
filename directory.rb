@@ -27,6 +27,15 @@ def student_by_first_char(students)
   end
 end
 
+def students_names_less_than_12_chars(students)
+        puts "Students with short names (<12) are listed below"
+  students.each do |student|
+    if student[:name].length < 12
+      puts "#{student[:name]}"
+    end
+  end
+end
+
 def print(students)
   students.each_with_index do |student, index|
     puts "#{index+1}. #{student[:name]} (#{student[:cohort]} cohort)"
@@ -42,3 +51,4 @@ print_header
 print(students)
 print_footer(students)
 student_by_first_char(students)
+students_names_less_than_12_chars(students)
