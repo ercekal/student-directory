@@ -18,11 +18,11 @@ def print_header
 end
 
 def student_by_first_char(students)
-  students.each do |firstname|
+  students.each do |student|
     letter = 'c'
-    if firstname[:name][0] == letter
+    if student[:name][0] == letter
       puts "The students starting with " +letter + " are listed below"
-      puts "#{firstname[:name]}"
+      puts "#{student[:name]}"
     end
   end
 end
