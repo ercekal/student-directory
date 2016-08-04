@@ -3,7 +3,7 @@ puts "To finish, just hit return twice"
   students = []
   def_cohort = :november
 puts "Please enter the name of the student"
-  name = gets.chomp
+  name = gets.gsub(/\n/,"")
      while !name.empty? do
        puts "Please enter the cohort of " + name
        cohort_input = gets.chomp
@@ -11,7 +11,7 @@ puts "Please enter the name of the student"
     students << {name: name, cohort: cohort}
       puts "Now we have #{students.count} student#{students.count == 1 ? "" : "s"}"
       puts "Please enter the name of the student"
-      name = gets.chomp
+    name = gets.gsub(/\n/,"")
     end
     students
   end
@@ -41,6 +41,6 @@ end
 
 students = input_students
 print_header
-#print(students)
+print(students)
 print_footer(students)
-sort_by_cohort(students)
+#sort_by_cohort(students)
