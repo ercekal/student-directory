@@ -1,17 +1,16 @@
 def input_students
 puts "To finish, just hit return twice"
   students = []
+  def_cohort = :november
 puts "Please enter the name of the student"
   name = gets.chomp
      while !name.empty? do
-      puts "Please enter the country of birth of " + name
-    cob = gets.chomp
-      puts "Please enter the hobby of " + name
-    hobby = gets.chomp
-      puts "Please enter the height " + name
-    height = gets.chomp
-    students << {name: name, cob: cob, hobby: hobby, height: height, cohort: :november}
+       puts "Please enter the cohort of " + name
+       cohort_input = gets.chomp
+       cohort = (cohort_input == "" ? def_cohort : cohort_input.downcase.to_sym)
+    students << {name: name, cohort: cohort}
       puts "Now we have #{students.count} student#{students.count == 1 ? "" : "s"}"
+      puts "Please enter the name of the student"
       name = gets.chomp
     end
     students
