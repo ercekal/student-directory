@@ -12,6 +12,7 @@ puts "Please enter the name of the student"
     height = gets.chomp
     students << {name: name, cob: cob, hobby: hobby, height: height, cohort: :november}
       puts "Now we have #{students.count} student#{students.count == 1 ? "" : "s"}"
+      name = gets.chomp
     end
     students
   end
