@@ -28,12 +28,16 @@ def print(students)
   end
 end
 
-def print_footer(names)
-  puts "Overall, we have {names.count} great students"
+def print_footer(students)
+  puts "Overall, we have " + students.count.to_s + " great students"
 end
 
 
 students = input_students
+if students.count >= 1
 print_header
 print(students)
 print_footer(students)
+else
+  puts "There is no student"
+end
