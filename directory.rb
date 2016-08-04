@@ -24,7 +24,7 @@ end
 
 def print(students)
   students.each do |student|
-    puts "#{student[:name]} (#{student[:cohort]} cohort) - likes #{student[:hobbies]}"
+    puts "#{student[:name]} (#{student[:cohort]} cohort) - likes #{student[:hobbies]}".center(60)
   end
 end
 
