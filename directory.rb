@@ -27,11 +27,20 @@ def print(students)
   end
 end
 
+def sort_by_cohort(students)
+  studenti = students.sort_by do |i|
+    i = [:cohort]
+end
+puts studenti
+end
+
 def print_footer(students)
   puts "Overall, we have #{students.count} great student#{students.count == 1 ? "" : "s"}"
 end
 
+
 students = input_students
 print_header
-print(students)
+#print(students)
 print_footer(students)
+sort_by_cohort(students)
