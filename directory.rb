@@ -1,41 +1,35 @@
 def input_students
-puts "To finish, just hit return twice"
+  puts "Please enter the names of the students"
+  puts "To finish, just hit return twice"
+  # create an empty array
   students = []
-  def_cohort = :november
-puts "Please enter the name of the student"
-  name = gets.gsub(/\n/,"")
-     while !name.empty? do
-       puts "Please enter the cohort of " + name
-       cohort_input = gets.chomp
-       cohort = (cohort_input == "" ? def_cohort : cohort_input.downcase.to_sym)
-    students << {name: name, cohort: cohort}
-      puts "Now we have #{students.count} student#{students.count == 1 ? "" : "s"}"
-      puts "Please enter the name of the student"
-    name = gets.gsub(/\n/,"")
-    end
-    students
+  # get the first name
+  name = gets.chomp
+  # while the name is not empty, repeat this code
+  while !name.empty? do
+  # add the student hash to the array
+  students << {name: name, cohort: :november}
+  puts "Now we have #{students.count} students"
+  # get another name from the user
+  name = gets.chomp
   end
+  # return the array of students
+  students
+end
 
 def print_header
-  puts "The students of Villains Academy"
-  puts "----------"
+  puts "The students of my cohort at Makers Academy"
+  puts "-------------"
 end
 
 def print(students)
   students.each do |student|
-    puts "#{student[:name]} (#{student[:cohort]} cohort) - likes #{student[:hobbies]}".center(60)
+    puts "#{student[:name]} (#{student[:cohort]} cohort)"
   end
 end
 
-def sort_by_cohort(students)
-  studenti = students.sort_by do |i|
-    i = [:cohort]
-end
-puts studenti
-end
-
-def print_footer(students)
-  puts "Overall, we have #{students.count} great student#{students.count == 1 ? "" : "s"}"
+def print_footer(names)
+  puts "Overall, we have {names.count} great students"
 end
 
 
@@ -43,4 +37,3 @@ students = input_students
 print_header
 print(students)
 print_footer(students)
-#sort_by_cohort(students)
