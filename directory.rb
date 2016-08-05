@@ -22,9 +22,13 @@ def process(selection)
   when "2"
     show_students
   when "3"
-    save_students
+    puts "Please enter the file name to be saved"
+    filename_save = gets.chomp
+    save_students(filename_save)
   when "4"
-    load_students
+    puts "Please enter the file name to be loaded"
+    filename_load = gets.chomp.to_s
+    load_students(filename_load)
   when "9"
     exit # this will cause the program to terminate
   else
@@ -68,9 +72,9 @@ def print_footer
   puts "Overall, we have #{@students.count} great students"
 end
 
-def save_students
+def save_students(filename_save)
   # open the file for writing
-  file = File.open("students.csv", "w")
+  file = File.open(filename_save, "w")
   # iterate over the array of students
   @students.each do |student|
     student_data = [student[:name], student[:cohort]]
@@ -78,20 +82,20 @@ def save_students
     file.puts csv_line
   end
   file.close
-  puts "Students are saved to students.csv"
+  puts "Students are saved to " + filename_save
 end
 
-def load_students(filename = "students.csv")
-if File.exists?(filename)
-  file = File.open(filename, "r")
+def load_students(filename_load)
+if File.exists?(filename_load)
+  file = File.open(filename_load, "r")
   file.readlines.each do |line|
   name, cohort = line.chomp.split(',')
     @students << {name: name, cohort: cohort.to_sym}
   end
   file.close
-  puts "Students are loaded from " + filename
+  puts "Students are loaded from " + filename_load
 else
-    puts "Sorry, #{filename} doesn't exist."
+    puts "Sorry, " + filename_load + " doesn't exist."
 end
 end
 
