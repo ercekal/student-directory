@@ -23,7 +23,7 @@ def input_load(name, cohort)
 def interactive_menu
   loop do
     print_menu
-    process(gets.chomp)
+    process(STDIN.gets.chomp)
   end
 end
 
@@ -41,21 +41,18 @@ def show_students
   print_footer
 end
 
+def selection_succesfull
+puts "You selection was done succesfully"
+end
+
 def process(selection)
-  case selection
-  when "1"
-    input_students
-  when "2"
-    show_students
-  when "3"
-    save_students
-  when "4"
-    load_students
-  when "9"
-    exit # this will cause the program to terminate
-  else
-    puts "I don't know what you meant, try again"
-  end
+  hash = { "1" => input_students,
+    "2" => show_students,
+    "3" => save_students,
+    "4" => load_students,
+    "9" => exit } #exits the program
+  hash.default =  "I don't know what you meant, try again"
+  hash(selection)
 end
 
 def print_header
@@ -92,4 +89,17 @@ def load_students
   file.close
 end
 
+def try_load_students(filename = "students.csv")
+  filename = ARGV.first # first argument from the command line
+  return if filename.nil? # get out of the method if it isn't given
+  if File.exists?(filename) # if it exists
+    load_students(filename)
+     puts "Loaded #{@students.count} from #{filename}"
+  else # if it doesn't exist
+    puts "Sorry, #{filename} doesn't exist."
+    exit # quit the program
+  end
+end
+
+try_load_students
 interactive_menu
