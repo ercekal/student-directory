@@ -21,12 +21,12 @@ def process(selection)
     input_students
   when "2"
     show_students
-  when "9"
-    exit # this will cause the program to terminate
   when "3"
     save_students
   when "4"
     load_students
+  when "9"
+    exit # this will cause the program to terminate
   else
     puts "I don't know what you meant, try again"
   end
@@ -78,6 +78,7 @@ def save_students
     file.puts csv_line
   end
   file.close
+  puts "Students are saved to students.csv"
 end
 
 def load_students(filename = "students.csv")
@@ -88,6 +89,7 @@ if File.exists?(filename)
     @students << {name: name, cohort: cohort.to_sym}
   end
   file.close
+  puts "Students are loaded from " + filename
 else
     puts "Sorry, #{filename} doesn't exist."
 end
