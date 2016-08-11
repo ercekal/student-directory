@@ -1,5 +1,7 @@
 @students = [] # an empty array accessible to all methods
 
+require "csv"
+
 def print_menu
   puts "1. Input the students"
   puts "2. Show the students"
@@ -74,29 +76,19 @@ end
 
 def save_students(filename_save)
   # open the file for writing
-  file = File.open(filename_save, "w") do |file|
+  CSV.open(filename_save, "wb") do |csv|
   # iterate over the array of students
-  @students.each do |student|
-    student_data = [student[:name], student[:cohort]]
-    csv_line = student_data.join(",")
-    file.puts csv_line
-  end
-end
+  @students.each {|student| csv << [student[:name], student[:cohort]] }
+    end
   puts "Students are saved to " + filename_save
 end
 
-def load_students(filename_load)
-if File.exists?(filename_load)
-  file = File.open(filename_load, "r") do |file|
-  file.readlines.each do |line|
-  name, cohort = line.chomp.split(',')
-    @students << {name: name, cohort: cohort.to_sym}
-  end
-end
-  puts "Students are loaded from " + filename_load
-else
-  puts "Sorry, " + filename_load + " doesn't exist."
-end
+def load_students(filename = "students.csv")
+  CSV.foreach(filename) {|row|
+    name, cohort = row
+    @students << {name: name, cohort: :november}
+  }
+  puts "Loaded #{@students.count} students from #{filename}"
 end
 
 def try_load_students(filename = "students.csv")
