@@ -1,12 +1,13 @@
 @students = [] # an empty array accessible to all methods
 
 require "csv"
-
+puts File.read(__FILE__)
 def print_menu
   puts "1. Input the students"
   puts "2. Show the students"
   puts "3. Save the list to students.csv"
   puts "4. Load the list from students.csv"
+  puts "5. Print the source code"
   puts "9. Exit" # 9 because we'll be adding more items
 end
 
@@ -31,6 +32,8 @@ def process(selection)
     puts "Please enter the file name to be loaded"
     filename_load = gets.chomp.to_s
     load_students(filename_load)
+  when "5"
+    puts File.read(__FILE__)
   when "9"
     exit # this will cause the program to terminate
   else
